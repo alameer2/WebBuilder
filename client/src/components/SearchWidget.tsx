@@ -1,5 +1,6 @@
 // Search Widget Component - مطابق للأصل
 import { useEffect, useRef } from 'react';
+import typedUrl from '@/assets/js/typed.min.js?url';
 
 export default function SearchWidget() {
   const labelRef = useRef<HTMLSpanElement>(null);
@@ -7,7 +8,7 @@ export default function SearchWidget() {
   useEffect(() => {
     // تحميل Typed.js للبحث المتحرك
     const script = document.createElement('script');
-    script.src = '/src/assets/js/typed.min.js';
+    script.src = typedUrl;
     script.onload = () => {
       if (window.Typed && labelRef.current) {
         new window.Typed(labelRef.current, {

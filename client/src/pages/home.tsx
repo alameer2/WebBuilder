@@ -10,6 +10,8 @@ import logoWhite from '../assets/images/yemen-flix-logo-white.svg';
 import siteNewBg from '../assets/images/site-new.webp';
 import homeBg from '../assets/images/home-bg.webp';
 import defaultAvatar from '../assets/images/default.jpg';
+import jqueryUrl from '@/assets/js/jquery-3.2.1.min.js?url';
+import typedUrl from '@/assets/js/typed.min.js?url';
 
 declare global {
   interface Window {
@@ -29,11 +31,11 @@ export default function Home() {
 
     // تحميل jQuery أولاً من الملف المحدث
     const jqueryScript = document.createElement('script');  
-    jqueryScript.src = '/src/assets/js/jquery-3.2.1.min.js';
+    jqueryScript.src = jqueryUrl;
     jqueryScript.onload = () => {
       // ثم تحميل Typed.js
       const typedScript = document.createElement('script');
-      typedScript.src = '/src/assets/js/typed.min.js';
+      typedScript.src = typedUrl;
       typedScript.onload = () => {
         // انتظار قليل للتأكد من تحميل الـ DOM
         setTimeout(() => {
