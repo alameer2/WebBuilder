@@ -10,11 +10,34 @@ import {
 } from "@shared/schema";
 import { z } from "zod";
 
+const moviesQuerySchema = z.object({
+  q: z.string().trim().optional(),
+  category: z.string().trim().optional(),
+  genre: z.string().trim().optional(),
+  year_min: z.coerce.number().int().min(1900).max(2100).optional(),
+  year_max: z.coerce.number().int().min(1900).max(2100).optional(),
+  rating_min: z.coerce.number().min(0).max(10).optional(),
+  rating_max: z.coerce.number().min(0).max(10).optional(),
+  quality: z.string().trim().optional(),
+  language: z.string().trim().optional(),
+  section: z.string().trim().optional(),
+  sort: z.enum(["newest","oldest","rating","year","title"]).default("newest").optional(),
+  order: z.enum(["asc","desc"]).default("desc").optional(),
+  limit: z.coerce.number().int().min(1).max(50).default(20).optional(),
+  offset: z.coerce.number().int().min(0).max(10000).default(0).optional(),
+  featured: z.enum(["true","false"]).optional(),
+  recent: z.enum(["true","false"]).optional(),
+});
+
 export async function registerRoutes(app: Express): Promise<Server> {
   
   // Movies endpoints
   app.get("/api/movies", async (req, res) => {
     try {
+      const parsed = moviesQuerySchema.safeParse(req.query);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "استعلام غير صحيح", errors: parsed.error.flatten() });
+      }
       const {
         q: search,
         category,
@@ -28,27 +51,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
         section,
         sort = "newest",
         order = "desc",
-        limit = "20",
-        offset = "0",
+        limit = 20,
+        offset = 0,
         featured,
-        recent
-      } = req.query;
+        recent,
+      } = parsed.data;
 
       const filters = {
         search: search as string,
         category: category as string,
-        genre: genre ? (genre as string).split(",") : undefined,
-        yearMin: year_min ? parseInt(year_min as string) : undefined,
-        yearMax: year_max ? parseInt(year_max as string) : undefined,
-        ratingMin: rating_min ? parseFloat(rating_min as string) : undefined,
-        ratingMax: rating_max ? parseFloat(rating_max as string) : undefined,
-        quality: quality ? (quality as string).split(",") : undefined,
-        language: language ? (language as string).split(",") : undefined,
+        genre: genre ? genre.split(",") : undefined,
+        yearMin: year_min,
+        yearMax: year_max,
+        ratingMin: rating_min,
+        ratingMax: rating_max,
+        quality: quality ? quality.split(",") : undefined,
+        language: language ? language.split(",") : undefined,
         section: section as string,
         sortBy: sort as string,
         sortOrder: order as string,
-        limit: parseInt(limit as string),
-        offset: parseInt(offset as string),
+        limit,
+        offset,
         featured: featured === "true",
         recent: recent === "true"
       };

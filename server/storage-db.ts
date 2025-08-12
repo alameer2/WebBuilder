@@ -574,5 +574,7 @@ async function initializeSampleData() {
   }
 }
 
-// Call initialization
-initializeSampleData();
+// Call initialization only when explicitly enabled
+if (process.env.SEED_SAMPLE_DATA === "true") {
+  initializeSampleData();
+}

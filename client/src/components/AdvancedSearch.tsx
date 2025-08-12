@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "wouter";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -91,7 +91,7 @@ interface AdvancedSearchProps {
 }
 
 export default function AdvancedSearch({ isOpen, onClose, initialFilters }: AdvancedSearchProps) {
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
   
   const [filters, setFilters] = useState<SearchFilters>({
     query: "",
@@ -141,7 +141,7 @@ export default function AdvancedSearch({ isOpen, onClose, initialFilters }: Adva
     searchParams.set("sort", filters.sortBy);
     searchParams.set("order", filters.sortOrder);
 
-    navigate(`/search?${searchParams.toString()}`);
+    setLocation(`/search?${searchParams.toString()}`);
     onClose();
   };
 
