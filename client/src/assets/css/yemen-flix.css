@@ -170,3 +170,16 @@ body, .main-header, .main-logo, .menu-toggle {
   border-radius: 4px;
   z-index: 3;
 }
+
+/* Overrides to replace legacy 'icons' webfont with Font Awesome */
+.breadcrumb-item + .breadcrumb-item::before {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-weight: 900;
+  content: "\f104"; /* angle-left */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b::before {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-weight: 900;
+  content: "\f078"; /* chevron-down */
+}

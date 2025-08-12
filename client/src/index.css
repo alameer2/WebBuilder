@@ -3,10 +3,12 @@
 
 /* Import YEMEN_FLIX CSS files */
 @import './assets/css/plugins.css';
+@import './assets/css/plugins-extended.css';
 /* Import all CSS files first */
 @import './assets/css/fonts.css';
 @import './assets/css/icons.css';
 @import './assets/css/style.css';
+@import './assets/css/style-extended.css';
 @import './assets/css/home.css';
 @import './assets/css/yemen-flix.css';
 
@@ -239,7 +241,7 @@
   /* YEMEN_FLIX Body Style Override */
   body {
     font-family: yemen-flix, Arial, Helvetica, sans-serif, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    background: linear-gradient(to bottom, rgba(0, 0, 0, .55), #000 100%), url('/src/assets/images/default.jpg');
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .55), #000 100%), url('./assets/images/default.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -287,7 +289,7 @@
 
   /* Loading gif integration */
   .yemen-flix-loading-bg {
-    background-image: url('/src/assets/images/0.gif');
+    background-image: url('./assets/images/0.gif');
     background-size: 40px 40px;
     background-repeat: repeat;
     opacity: 0.05;
