@@ -8,7 +8,20 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 app.use(compression());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: process.env.NODE_ENV === 'production' ? {
+    useDefaults: true,
+    directives: {
+      "default-src": ["'self'"],
+      "script-src": ["'self'", "'unsafe-inline'"],
+      "style-src": ["'self'", "'unsafe-inline'", "https:"],
+      "img-src": ["'self'", "data:", "https:"],
+      "font-src": ["'self'", "https:", "data:"],
+      "connect-src": ["'self'", "https:"],
+    }
+  } : false,
+  crossOriginEmbedderPolicy: false,
+}));
 const corsOrigin = process.env.CORS_ORIGIN ? new RegExp(process.env.CORS_ORIGIN) : /^https?:\/\/localhost(:\d+)?$/;
 app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(rateLimit({ windowMs: 60_000, max: 300 }));

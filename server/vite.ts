@@ -76,6 +76,36 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // Static with cache headers for assets
+  app.use((req, res, next) => {
+    if (/(?:\/assets\/|\.woff2$|\.woff$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpg$|\.jpeg$|\.webp$|\.gif$)/.test(req.path)) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    }
+    next();
+  });
+
+  app.get(["/robots.txt"], (_req, res) => {
+    res.type("text/plain").send("User-agent: *\nAllow: /\nSitemap: /sitemap.xml\n");
+  });
+
+  app.get(["/sitemap.xml"], async (_req, res) => {
+    try {
+      const baseUrl = process.env.PUBLIC_URL || "https://yemen-flix.com";
+      const indexHtml = path.resolve(distPath, "index.html");
+      if (!fs.existsSync(indexHtml)) {
+        return res.status(404).end();
+      }
+      // Minimal static sitemap with homepage; dynamic endpoints can be added later
+      const urls = ["/", "/movies", "/series", "/shows", "/mix", "/recent"]
+        .map((u) => `<url><loc>${baseUrl}${u}</loc></url>`)
+        .join("");
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`;
+      res.type("application/xml").send(xml);
+    } catch {
+      res.status(500).end();
+    }
+  });
+
   app.use(express.static(distPath));
 
   // fall through to index.html if the file doesn't exist
