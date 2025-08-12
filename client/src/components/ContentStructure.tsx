@@ -21,7 +21,7 @@ import {
   HardDrive,
   MapPin
 } from "lucide-react";
-import MovieCard from "./MovieCard";
+import MovieCard2 from "./MovieCard2";
 import RatingSystem, { DisplayRating } from "./RatingSystem";
 import CommentSystem from "./CommentSystem";
 import type { Movie, Episode, Person } from "@shared/schema";
@@ -40,9 +40,10 @@ export default function ContentStructure({ content, contentType }: ContentStruct
     queryKey: ["/api/episodes", content.id],
     queryFn: async () => {
       if (contentType !== "series") return [];
-      const response = await fetch(`/api/episodes?seriesId=${content.id}`);
+      const response = await fetch(`/api/series/${content.id}/episodes`);
       if (!response.ok) throw new Error("Failed to fetch episodes");
-      return response.json() as Episode[];
+      const data = await response.json();
+      return data as Episode[];
     },
     enabled: contentType === "series",
   });
@@ -53,7 +54,8 @@ export default function ContentStructure({ content, contentType }: ContentStruct
     queryFn: async () => {
       const response = await fetch(`/api/people?movieId=${content.id}`);
       if (!response.ok) throw new Error("Failed to fetch cast");
-      return response.json() as Person[];
+      const data = await response.json();
+      return data as Person[];
     },
   });
 
@@ -387,7 +389,7 @@ export default function ContentStructure({ content, contentType }: ContentStruct
         <TabsContent value="related" className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {relatedContent.map((movie: Movie) => (
-              <MovieCard key={movie.id} movie={movie} />
+              <MovieCard2 key={movie.id} movie={movie} />
             ))}
           </div>
         </TabsContent>

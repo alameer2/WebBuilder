@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import MovieCard from "./MovieCard";
+import MovieCard2 from "./MovieCard2";
 import LoadingSpinner from "./LoadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -115,7 +115,7 @@ export default function FilteredGrid({
     setFilters(prev => ({
       ...prev,
       [key]: value,
-      page: key === "page" ? value : 1, // Reset to page 1 when other filters change
+      page: key === "page" ? Number(value) : 1,
     }));
   };
 
@@ -311,7 +311,7 @@ export default function FilteredGrid({
           : "space-y-4"
         }>
           {movies.map((movie) => (
-            <MovieCard
+            <MovieCard2
               key={movie.id}
               movie={movie}
               variant={viewMode === "list" ? "horizontal" : "vertical"}
@@ -368,7 +368,18 @@ export default function FilteredGrid({
       <AdvancedSearch
         isOpen={showAdvancedSearch}
         onClose={() => setShowAdvancedSearch(false)}
-        initialFilters={filters}
+        initialFilters={{
+          query: filters.search,
+          category: filters.category,
+          genre: filters.genre === 'all' ? [] : [filters.genre],
+          year: { min: null, max: null },
+          rating: { min: null, max: null },
+          quality: filters.quality === 'all' ? [] : [filters.quality],
+          language: filters.language === 'all' ? [] : [filters.language],
+          section: filters.section,
+          sortBy: filters.sortBy,
+          sortOrder: filters.sortOrder,
+        }}
       />
     </div>
   );

@@ -2,12 +2,15 @@ import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+app.use(compression());
 app.use(helmet());
-app.use(cors({ origin: [/^https?:\/\/localhost(:\d+)?$/], credentials: true }));
+const corsOrigin = process.env.CORS_ORIGIN ? new RegExp(process.env.CORS_ORIGIN) : /^https?:\/\/localhost(:\d+)?$/;
+app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(rateLimit({ windowMs: 60_000, max: 300 }));
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false }));
