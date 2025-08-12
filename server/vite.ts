@@ -5,6 +5,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+import { storage } from "./storage";
 
 const viteLogger = createLogger();
 
@@ -95,10 +96,24 @@ export function serveStatic(app: Express) {
       if (!fs.existsSync(indexHtml)) {
         return res.status(404).end();
       }
-      // Minimal static sitemap with homepage; dynamic endpoints can be added later
-      const urls = ["/", "/movies", "/series", "/shows", "/mix", "/recent"]
-        .map((u) => `<url><loc>${baseUrl}${u}</loc></url>`)
-        .join("");
+
+      const staticUrls = ["/", "/movies", "/series", "/shows", "/mix", "/recent", "/contactus", "/favorites", "/notifications"];
+
+      let dynamicUrls = "";
+      try {
+        const all = await storage.getAllMovies();
+        dynamicUrls = all
+          .map((m) => {
+            const loc = m.category === 'series' ? `/series/${m.id}` : `/movie/${m.id}`;
+            const lastmod = (m.updatedDate || m.addedDate) ? new Date(m.updatedDate || m.addedDate as any).toISOString() : undefined;
+            return `<url><loc>${baseUrl}${loc}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`;
+          })
+          .join("");
+      } catch (_e) {
+        dynamicUrls = ""; // fallback quietly
+      }
+
+      const urls = staticUrls.map((u) => `<url><loc>${baseUrl}${u}</loc></url>`).join("") + dynamicUrls;
       const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`;
       res.type("application/xml").send(xml);
     } catch {
