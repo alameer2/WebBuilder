@@ -3,10 +3,12 @@
 
 /* Import YEMEN_FLIX CSS files */
 @import './assets/css/plugins.css';
+@import './assets/css/plugins-extended.css';
 /* Import all CSS files first */
 @import './assets/css/fonts.css';
 @import './assets/css/icons.css';
 @import './assets/css/style.css';
+@import './assets/css/style-extended.css';
 @import './assets/css/home.css';
 @import './assets/css/yemen-flix.css';
 
