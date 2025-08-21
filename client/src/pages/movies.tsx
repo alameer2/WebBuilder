@@ -246,30 +246,26 @@ export default function Movies() {
                   <div key={movie.id} className="col-lg-2 col-md-3 col-sm-4 col-6">
                     <div className="post-item">
                       <div className="post-poster">
-                        <Link href={`/movie/${movie.id}`}>
-                          <a className="d-block">
-                            <img
-                              src={movie.poster}
-                              className="img-fluid"
-                              alt={movie.title}
-                              data-testid={`movie-poster-${movie.id}`}
-                            />
-                            <div className="post-overlay">
-                              <div className="post-quality">{movie.quality || 'HD'}</div>
-                              <div className="post-rating">
-                                <i className="icon-star"></i>
-                                {movie.rating}
-                              </div>
+                        <Link href={`/movie/${movie.id}`} className="d-block">
+                          <img
+                            src={movie.poster}
+                            className="img-fluid"
+                            alt={movie.title}
+                            data-testid={`movie-poster-${movie.id}`}
+                          />
+                          <div className="post-overlay">
+                            <div className="post-quality">{movie.quality || 'HD'}</div>
+                            <div className="post-rating">
+                              <i className="icon-star"></i>
+                              {movie.rating}
                             </div>
-                          </a>
+                          </div>
                         </Link>
                       </div>
                       <div className="post-content">
                         <h3 className="post-title">
-                          <Link href={`/movie/${movie.id}`}>
-                            <a className="text-white" data-testid={`movie-title-${movie.id}`}>
-                              {movie.title}
-                            </a>
+                          <Link href={`/movie/${movie.id}`} className="text-white" data-testid={`movie-title-${movie.id}`}>
+                            {movie.title}
                           </Link>
                         </h3>
                         <div className="post-meta text-muted">

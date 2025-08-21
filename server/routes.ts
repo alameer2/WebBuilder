@@ -15,6 +15,44 @@ import adminRoutes from './routes-admin';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Series endpoints
+  app.get("/api/series", async (req, res) => {
+    try {
+      const filters = {
+        category: 'series',
+        sortBy: "newest",
+        sortOrder: "desc",
+        limit: parseInt((req.query.limit as string) || "20"),
+        offset: parseInt((req.query.offset as string) || "0")
+      };
+
+      const result = await storage.searchMoviesAdvanced(filters);
+      res.json(result);
+    } catch (error) {
+      console.error("Get series error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع المسلسلات" });
+    }
+  });
+
+  // Shows/Programs endpoints
+  app.get("/api/shows", async (req, res) => {
+    try {
+      const filters = {
+        category: 'show',
+        sortBy: "newest", 
+        sortOrder: "desc",
+        limit: parseInt((req.query.limit as string) || "20"),
+        offset: parseInt((req.query.offset as string) || "0")
+      };
+
+      const result = await storage.searchMoviesAdvanced(filters);
+      res.json(result);
+    } catch (error) {
+      console.error("Get shows error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع البرامج" });
+    }
+  });
+
   // Movies endpoints
   app.get("/api/movies", async (req, res) => {
     try {
