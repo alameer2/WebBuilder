@@ -38,6 +38,7 @@ export interface TMDBMovieDetails extends TMDBMovie {
       name: string;
       job: string;
       department: string;
+      profile_path?: string;
     }>;
   };
   videos: {
