@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import { eq, and, like, or, desc, asc, count, inArray, gte, lte, sql } from "drizzle-orm";
+import { API_KEYS, getDatabaseConfig } from "../config/api-keys";
 import { 
   users, movies, episodes, categories, tags, people, comments, favorites, 
   contacts, notifications, moviePeople 
@@ -94,9 +95,10 @@ export class DatabaseStorage implements IStorage {
   private db: ReturnType<typeof drizzle>;
 
   constructor() {
-    const connectionString = process.env.DATABASE_URL;
+    const dbConfig = getDatabaseConfig();
+    const connectionString = dbConfig.url;
     if (!connectionString) {
-      throw new Error("DATABASE_URL is required");
+      throw new Error("DATABASE_URL is required in environment variables");
     }
     const sql = neon(connectionString);
     this.db = drizzle(sql);

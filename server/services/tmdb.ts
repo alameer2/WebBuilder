@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
+import { API_KEYS } from '../../config/api-keys';
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 
@@ -77,10 +77,10 @@ class TMDBService {
   private apiKey: string;
 
   constructor() {
-    if (!TMDB_API_KEY) {
-      throw new Error('TMDB_API_KEY is required');
+    if (!API_KEYS.TMDB_API_KEY) {
+      throw new Error('TMDB_API_KEY is required in environment variables');
     }
-    this.apiKey = TMDB_API_KEY;
+    this.apiKey = API_KEYS.TMDB_API_KEY;
   }
 
   private async request(endpoint: string): Promise<any> {
