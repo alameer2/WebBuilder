@@ -1,5 +1,5 @@
 // إضافة بيانات تجريبية للمسلسلات والبرامج
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const BASE_URL = 'http://localhost:5000';
 
