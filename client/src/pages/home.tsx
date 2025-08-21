@@ -238,20 +238,20 @@ export default function Home() {
               <div className="row align-items-center">
                 <div className="col-auto">
                   <h2 className="main-logo m-0">
-                    <a href="/" className="d-inline-flex">
+                    <Link href="/" className="d-inline-flex">
                       <img src={logoWhite} className="img-fluid" alt="يمن فليكس" />
-                    </a>
+                    </Link>
                   </h2>
                 </div>
                 <div className="col-auto menu-toggle-container">
-                  <a href="#" className="menu-toggle d-flex align-items-center text-white">
+                  <button onClick={() => document.body.classList.toggle('main-menu-active')} className="menu-toggle d-flex align-items-center text-white bg-transparent border-0">
                     <span className="icn">
                       <span></span>
                       <span></span>
                       <span></span>
                     </span>
                     <div className="text font-size-18 mr-3">الأقسام</div>
-                  </a>
+                  </button>
                 </div>
                 <div className="ml-auto"></div>
                 <div className="col-md-5 col-lg-6 search-container">
@@ -264,13 +264,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="col-auto recently-container">
-                  <a href="/recent" className="btn-recently">
+                  <Link href="/recent" className="btn-recently">
                     <i className="icon-plus2 ml-2"></i><span>أضيف حديثا</span>
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-auto user-profile-container">
                   <div className="user-panel">
-                    <a className="user-toggle d-block font-size-20 public" href="/login"><i className="icon-user"></i></a>
+                    <Link className="user-toggle d-block font-size-20 public" href="/login"><i className="icon-user"></i></Link>
                   </div>
                 </div>
               </div>
@@ -284,7 +284,7 @@ export default function Home() {
             {/* Central Logo Button */}
             <div className="home-site-btn-container mt-5">
               <h1>
-                <a href="/" className="link" style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', zIndex: 10 }}></a>
+                <Link href="/" className="link" style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', zIndex: 10 }}></Link>
               </h1>
               <div 
                 className="home-site-btn" 
@@ -329,28 +329,28 @@ export default function Home() {
                   <div className="main-categories-list">
                     <div className="row">
                       <div className="col-lg col-4">
-                        <a href="/movies" className="item d-block text-center text-white py-3 h-100">
+                        <Link href="/movies" className="item d-block text-center text-white py-3 h-100">
                           <div className="icn"><i className="icon-video-camera"></i></div>
                           <div className="font-size-16">أفلام</div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="col-lg col-4">
-                        <a href="/series" className="item d-block text-center text-white py-3 h-100">
+                        <Link href="/series" className="item d-block text-center text-white py-3 h-100">
                           <div className="icn"><i className="icon-monitor"></i></div>
                           <div className="font-size-16">مسلسلات</div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="col-lg col-4">
-                        <a href="/shows" className="item d-block text-center text-white py-3 h-100">
+                        <Link href="/shows" className="item d-block text-center text-white py-3 h-100">
                           <div className="icn"><i className="icon-tv"></i></div>
                           <div className="font-size-16">تلفزيون</div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="col-lg col-4">
-                        <a href="/mix" className="item d-block text-center text-white py-3 h-100">
+                        <Link href="/mix" className="item d-block text-center text-white py-3 h-100">
                           <div className="icn"><i className="icon-mix"></i></div>
                           <div className="font-size-16">منوعات</div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -377,7 +377,7 @@ export default function Home() {
                           <span className="label rating"><i className="icon-star mr-2"></i>8.{item}</span>
                           <span className="ml-auto"></span>
                         </div>
-                        <a href={`/movie/${item}`}>
+                        <Link href={`/movie/${item}`}>
                           <div className="entry-image">
                             <div className="image" style={{ backgroundImage: 'url("/client/src/assets/images/default.jpg")' }}></div>
                             <div className="entry-overlay">
@@ -387,7 +387,7 @@ export default function Home() {
                               </div>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   ))}
