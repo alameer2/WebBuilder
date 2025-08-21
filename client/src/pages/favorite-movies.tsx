@@ -317,7 +317,7 @@ export default function FavoriteMovies() {
                             </div>
                             {movie.genre && movie.genre.length > 0 && (
                               <div className="movie-genre mt-2">
-                                {movie.genre.map((g, index) => (
+                                {movie.genre.map((g: string, index: number) => (
                                   <span key={index} className="badge badge-secondary mr-1">{g}</span>
                                 ))}
                               </div>
