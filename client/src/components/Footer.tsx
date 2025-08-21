@@ -3,11 +3,9 @@ export default function Footer() {
     <footer className="main-footer py-5">
       <nav className="social d-flex justify-content-center">
         <a href="/" target="" className="home mx-2"><i className="icon-home"></i></a>
-        <a href="#" target="_blank" className="facebook mx-2"><i className="icon-facebook"></i></a>
-        <a href="#" target="_blank" className="facebook mx-2"><i className="icon-facebook"></i></a>
-        <a href="#" target="_blank" className="app-store mx-2"><i className="icon-app-store"></i></a>
-        <a href="#" target="_blank" className="youtube mx-2"><i className="icon-youtube"></i></a>
-        <a href="#" target="_blank" className="app-store mx-2"><i className="icon-app-store"></i></a>
+        <a href="https://facebook.com/yemenflix" target="_blank" className="facebook mx-2"><i className="icon-facebook"></i></a>
+        <a href="https://twitter.com/yemenflix" target="_blank" className="twitter mx-2"><i className="icon-twitter"></i></a>
+        <a href="https://youtube.com/yemenflix" target="_blank" className="youtube mx-2"><i className="icon-youtube"></i></a>
         <a href="/contactus" target="" className="email mx-2"><i className="icon-email"></i></a>
       </nav>
 

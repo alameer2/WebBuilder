@@ -32,10 +32,10 @@ export default function MainMenu() {
           <Link href="/" className="home mx-2" onClick={closeMenu}>
             <i className="icon-home"></i>
           </Link>
-          <a href="#" target="_blank" className="facebook mx-2">
+          <a href="https://facebook.com/yemenflix" target="_blank" className="facebook mx-2">
             <i className="icon-facebook"></i>
           </a>
-          <a href="#" target="_blank" className="twitter mx-2">
+          <a href="https://twitter.com/yemenflix" target="_blank" className="twitter mx-2">
             <i className="icon-twitter"></i>
           </a>
           <a href="#" target="_blank" className="app-store mx-2">

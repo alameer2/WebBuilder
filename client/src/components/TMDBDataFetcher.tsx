@@ -3,7 +3,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Search, Download, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 import { apiRequest } from '@/lib/queryClient';
 
-export default function TMDBDataFetcher() {
+interface TMDBDataFetcherProps {
+  onDataFetched?: () => void;
+}
+
+export default function TMDBDataFetcher({ onDataFetched }: TMDBDataFetcherProps = {}) {
   const [searchQuery, setSearchQuery] = useState('');
   const [importCount, setImportCount] = useState(20);
   const [importStatus, setImportStatus] = useState<string>('');
@@ -19,6 +23,7 @@ export default function TMDBDataFetcher() {
     onSuccess: (data: any) => {
       setImportStatus(`✅ تم إستيراد الفيلم: ${data.movie?.title || 'فيلم جديد'}`);
       queryClient.invalidateQueries({ queryKey: ['/api/movies'] });
+      onDataFetched?.();
     },
     onError: (error: any) => {
       setImportStatus(`❌ خطأ: ${error.message}`);
@@ -34,6 +39,7 @@ export default function TMDBDataFetcher() {
     onSuccess: (data: any) => {
       setImportStatus(`✅ تم إستيراد ${data.imported || 0} فيلم، تم تخطي ${data.skipped || 0} فيلم موجود`);
       queryClient.invalidateQueries({ queryKey: ['/api/movies'] });
+      onDataFetched?.();
     },
     onError: (error: any) => {
       setImportStatus(`❌ خطأ في الإستيراد: ${error.message}`);
