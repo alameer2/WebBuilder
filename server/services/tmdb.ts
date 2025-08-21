@@ -75,15 +75,23 @@ export interface TMDBTVShow {
 
 class TMDBService {
   private apiKey: string;
+  private isEnabled: boolean;
 
   constructor() {
-    if (!API_KEYS.TMDB_API_KEY) {
-      throw new Error('TMDB_API_KEY is required in environment variables');
+    this.isEnabled = !!API_KEYS.TMDB_API_KEY;
+    if (!this.isEnabled) {
+      console.log('TMDB_API_KEY not found, TMDB service disabled. Add TMDB_API_KEY to enable external movie data.');
+      this.apiKey = '';
+      return;
     }
     this.apiKey = API_KEYS.TMDB_API_KEY;
   }
 
   private async request(endpoint: string): Promise<any> {
+    if (!this.isEnabled) {
+      throw new Error('TMDB service is disabled. Please add TMDB_API_KEY to environment variables.');
+    }
+    
     // بناء URL مع المعاملات الصحيحة
     const separator = endpoint.includes('?') ? '&' : '?';
     const url = `${TMDB_BASE_URL}${endpoint}${separator}api_key=${this.apiKey}&language=ar-SA`;
@@ -281,4 +289,31 @@ class TMDBService {
   }
 }
 
-export const tmdbService = new TMDBService();
+// Initialize TMDB service conditionally
+let tmdbService: TMDBService;
+try {
+  tmdbService = new TMDBService();
+} catch (error) {
+  console.log('TMDB service initialization skipped:', error instanceof Error ? error.message : 'Unknown error');
+  // Create a dummy service with disabled methods
+  tmdbService = {
+    isEnabled: false,
+    getPopularMovies: async () => ({ results: [], total_pages: 0 }),
+    getNowPlayingMovies: async () => ({ results: [], total_pages: 0 }),
+    getTopRatedMovies: async () => ({ results: [], total_pages: 0 }),
+    getUpcomingMovies: async () => ({ results: [], total_pages: 0 }),
+    searchMovies: async () => ({ results: [], total_pages: 0 }),
+    getMovieDetails: async () => null,
+    getPopularTVShows: async () => ({ results: [], total_pages: 0 }),
+    getTopRatedTVShows: async () => ({ results: [], total_pages: 0 }),
+    getOnTheAirTVShows: async () => ({ results: [], total_pages: 0 }),
+    searchTVShows: async () => ({ results: [], total_pages: 0 }),
+    getTVShowDetails: async () => null,
+    getImageUrl: () => '',
+    getBackdropUrl: () => '',
+    convertToLocalMovie: () => null,
+    convertToLocalSeries: () => null
+  } as any;
+}
+
+export { tmdbService };
