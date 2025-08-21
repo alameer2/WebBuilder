@@ -441,7 +441,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const filteredMovies = allMovies.filter(movie => 
         movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.originalTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        movie.originalTitle?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         movie.description?.toLowerCase().includes(searchQuery.toLowerCase())
       );
       
