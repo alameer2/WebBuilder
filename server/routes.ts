@@ -425,6 +425,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Episode alias for compatibility
+  app.get("/api/episode/:id", async (req, res) => {
+    try {
+      const episode = await storage.getEpisodeById(req.params.id);
+      if (!episode) {
+        return res.status(404).json({ message: "الحلقة غير موجودة" });
+      }
+      res.json(episode);
+    } catch (error) {
+      console.error("Get episode error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع الحلقة" });
+    }
+  });
+
+  // Featured content endpoint
+  app.get("/api/featured", async (req, res) => {
+    try {
+      const featuredMovies = await storage.getFeaturedMovies();
+      res.json({
+        movies: featuredMovies,
+        total: featuredMovies.length
+      });
+    } catch (error) {
+      console.error("Get featured error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع المحتوى المميز" });
+    }
+  });
+
   // People endpoints
   app.get("/api/people", async (req, res) => {
     try {
@@ -557,22 +585,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Search endpoint
   app.get("/api/search", async (req, res) => {
     try {
-      const { q: searchQuery } = req.query;
+      const { q: searchQuery, query: searchQuery2 } = req.query;
+      const finalQuery = searchQuery || searchQuery2;
       
-      if (!searchQuery || typeof searchQuery !== 'string') {
+      if (!finalQuery || typeof finalQuery !== 'string') {
         return res.json({ results: [], total: 0 });
       }
 
-      console.log("Searching for:", searchQuery);
+      console.log("Searching for:", finalQuery);
       
       // Use simple search and also get all movies
       const allMovies = await storage.getAllMovies();
       console.log("All movies count:", allMovies.length);
       
       const filteredMovies = allMovies.filter(movie => 
-        movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.originalTitle?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        movie.title.toLowerCase().includes(finalQuery.toLowerCase()) ||
+        movie.originalTitle?.toLowerCase().includes(finalQuery.toLowerCase()) ||
+        movie.description?.toLowerCase().includes(finalQuery.toLowerCase())
       );
       
       console.log("Filtered movies:", filteredMovies.length);
