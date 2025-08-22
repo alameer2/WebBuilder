@@ -42,6 +42,7 @@ interface Movie {
   downloadCount?: number;
   likeCount?: number;
   dislikeCount?: number;
+  gallery?: string[];
 }
 
 export default function MovieDetail() {
@@ -332,6 +333,26 @@ export default function MovieDetail() {
                   <h5>القصة:</h5>
                   <p>{movie.description}</p>
                 </div>
+
+                {/* Gallery */}
+                {movie.gallery && movie.gallery.length > 0 && (
+                  <div className="movie-gallery mb-4">
+                    <h5>لقطات من الفيلم:</h5>
+                    <div className="gallery-grid d-flex flex-wrap">
+                      {movie.gallery.slice(0, 4).map((image: string, index: number) => (
+                        <div key={index} className="gallery-item mr-3 mb-3">
+                          <img 
+                            src={image} 
+                            alt={`${movie.title} لقطة ${index + 1}`}
+                            className="img-fluid rounded shadow-sm"
+                            style={{width: '150px', height: '100px', objectFit: 'cover', cursor: 'pointer'}}
+                            onClick={() => window.open(image, '_blank')}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Cast & Crew */}
                 <div className="movie-cast-crew mb-4">

@@ -439,44 +439,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/people/:id", async (req, res) => {
     try {
-      // First try to get from storage
-      let person = await storage.getPersonById(req.params.id);
-      
-      // If not found in storage, try to fetch from TMDB
-      if (!person) {
-        try {
-          // For now, return a 404 as TMDB person API is not implemented yet
-          const tmdbPerson = null;
-          if (tmdbPerson) {
-            // Convert TMDB data to our format and store it
-            // This code is commented out since tmdbPerson is null
-            // const personData = {
-            //   name: tmdbPerson.name,
-            //   arabicName: tmdbPerson.name,
-            //   bio: tmdbPerson.biography || '',
-            //   birthDate: tmdbPerson.birthday || '',
-            //   nationality: tmdbPerson.place_of_birth || '',
-            //   photo: tmdbPerson.profile_path || '',
-            //   knownFor: tmdbPerson.known_for_department || '',
-            //   popularity: tmdbPerson.popularity || 0
-            // };
-            
-            // person = await storage.createPerson(personData);
-          }
-        } catch (tmdbError) {
-          console.error("TMDB person fetch error:", tmdbError);
-        }
-      }
+      const person = await storage.getPersonById(req.params.id);
       
       if (!person) {
         return res.status(404).json({ message: "الشخص غير موجود" });
       }
 
-      const movies = await storage.getPersonMovies(req.params.id);
-      res.json({ ...person, movies });
+      res.json(person);
     } catch (error) {
       console.error("Get person error:", error);
       res.status(500).json({ message: "خطأ في استرجاع بيانات الشخص" });
+    }
+  });
+
+  app.get("/api/people/:id/movies", async (req, res) => {
+    try {
+      const movies = await storage.getPersonMovies(req.params.id);
+      res.json(movies);
+    } catch (error) {
+      console.error("Get person movies error:", error);
+      res.json([]);
     }
   });
 

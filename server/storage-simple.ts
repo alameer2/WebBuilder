@@ -34,8 +34,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Action", "Crime", "Drama"],
       tags: ["superhero", "batman"],
       poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD",
       language: "English",
       subtitle: ["Arabic"],
@@ -46,6 +46,12 @@ export class SimpleStorage implements IStorage {
       cast: [
         { id: "christian", name: "Christian Bale", image: "https://image.tmdb.org/t/p/w200/3qx2QFUbG6t6IlzR0F9k3Z4Y8dD.jpg" },
         { id: "heath", name: "Heath Ledger", image: "https://image.tmdb.org/t/p/w200/5Y9HnYYa9jF4NunY9lSgJGjSe8E.jpg" }
+      ],
+      gallery: [
+        "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+        "https://image.tmdb.org/t/p/w500/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+        "https://image.tmdb.org/t/p/w500/vCFE2HQMkPjkaTiCAPdAzkQVbnn.jpg",
+        "https://image.tmdb.org/t/p/w500/1hRoyzDtpgMU7Dz4JF22RANzQO7.jpg"
       ],
       writer: ["Christopher Nolan"],
       producer: ["Emma Thomas"],
@@ -74,8 +80,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Crime", "Drama", "Thriller"],
       tags: ["chemistry", "drugs", "family"],
       poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD",
       language: "English",
       subtitle: ["Arabic"],
@@ -86,6 +92,12 @@ export class SimpleStorage implements IStorage {
       cast: [
         { id: "bryan", name: "Bryan Cranston", image: "https://image.tmdb.org/t/p/w200/7ksQ9AKWX9xOFKmHZCadcAZbGQa.jpg" },
         { id: "aaron", name: "Aaron Paul", image: "https://image.tmdb.org/t/p/w200/hWQBGDDYO4bY1Qd75IjGfG29CaE.jpg" }
+      ],
+      gallery: [
+        "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+        "https://image.tmdb.org/t/p/w500/s28nJFrEzXJhWjSJ5RhH8MhB7cC.jpg",
+        "https://image.tmdb.org/t/p/w500/9VLNvchJNt8LHvqaJZP0hJPjKs7.jpg",
+        "https://image.tmdb.org/t/p/w500/7I1o3nLlwIGzaE2xr5n1TGj9t2F.jpg"
       ],
       writer: ["Vince Gilligan"],
       producer: ["Mark Johnson"],
@@ -114,8 +126,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Fantasy", "Drama", "Action"],
       tags: ["dragons", "medieval", "war"],
       poster: "https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD",
       language: "English",
       subtitle: ["Arabic"],
@@ -154,8 +166,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Comedy", "Romance"],
       tags: ["friendship", "comedy", "sitcom"],
       poster: "https://image.tmdb.org/t/p/w500/f496cm9enuEsZkSPzCwnTESEK5s.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD", 
       language: "English",
       subtitle: ["Arabic"],
@@ -194,8 +206,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Comedy", "Drama"],
       tags: ["office", "workplace", "mockumentary"],
       poster: "https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD",
       language: "English", 
       subtitle: ["Arabic"],
@@ -282,8 +294,8 @@ export class SimpleStorage implements IStorage {
       genre: ["Talk Show", "Comedy"],
       tags: ["entertainment", "celebrity", "comedy"],
       poster: "https://image.tmdb.org/t/p/w500/h5yG5OsA6LgljNe7s50JFHfRpPG.jpg",
-      backdrop: null,
-      trailer: null,
+      backdrop: "https://image.tmdb.org/t/p/w1280/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+      trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
       quality: "HD",
       language: "English",
       subtitle: ["Arabic"],
@@ -320,6 +332,58 @@ export class SimpleStorage implements IStorage {
       { id: "3", name: "كوميديا", nameAr: "كوميديا", slug: "comedy", count: 18, isActive: true },
       { id: "4", name: "رعب", nameAr: "رعب", slug: "horror", count: 12, isActive: true },
       { id: "5", name: "إثارة", nameAr: "إثارة", slug: "thriller", count: 20, isActive: true }
+    );
+
+    // Add sample people
+    this.data.people.push(
+      {
+        id: "christian",
+        name: "Christian Bale",
+        nameAr: "كريستيان بيل",
+        biography: "ممثل إنجليزي مشهور بأدواره في أفلام الأكشن والدراما",
+        birthDate: "30 يناير 1974",
+        nationality: "بريطانيا",
+        photo: "https://image.tmdb.org/t/p/w500/3qx2QFUbG6t6IlzR0F9k3Z4Y8dD.jpg",
+        profession: ["ممثل"],
+        isActive: true,
+        addedDate: new Date(),
+      },
+      {
+        id: "heath",
+        name: "Heath Ledger",
+        nameAr: "هيث ليدجر",
+        biography: "ممثل أسترالي رائع، اشتهر بأداء دور الجوكر في فيلم The Dark Knight",
+        birthDate: "4 أبريل 1979",
+        nationality: "أستراليا",
+        photo: "https://image.tmdb.org/t/p/w500/5Y9HnYYa9jF4NunY9lSgJGjSe8E.jpg",
+        profession: ["ممثل"],
+        isActive: true,
+        addedDate: new Date(),
+      },
+      {
+        id: "bryan",
+        name: "Bryan Cranston",
+        nameAr: "برايان كرانستون",
+        biography: "ممثل أمريكي مشهور بدوره في مسلسل Breaking Bad",
+        birthDate: "7 مارس 1956",
+        nationality: "الولايات المتحدة",
+        photo: "https://image.tmdb.org/t/p/w500/7ksQ9AKWX9xOFKmHZCadcAZbGQa.jpg",
+        profession: ["ممثل", "مخرج"],
+        isActive: true,
+        addedDate: new Date(),
+      },
+      {
+        id: "aaron",
+        name: "Aaron Paul",
+        nameAr: "آرون بول",
+        biography: "ممثل أمريكي اشتهر بدوره في مسلسل Breaking Bad",
+        birthDate: "27 أغسطس 1979",
+        nationality: "الولايات المتحدة",
+        photo: "https://image.tmdb.org/t/p/w500/hWQBGDDYO4bY1Qd75IjGfG29CaE.jpg",
+        profession: ["ممثل"],
+        isActive: true,
+        addedDate: new Date(),
+      }
     );
   }
 
@@ -487,12 +551,25 @@ export class SimpleStorage implements IStorage {
     return this.data.people.find(p => p.id === id);
   }
   async getPersonMovies(personId: string): Promise<Movie[]> {
-    return this.data.movies.filter(m => 
-      m.cast.includes(personId) || 
-      m.director.includes(personId) ||
-      m.writer.includes(personId) ||
-      m.producer.includes(personId)
-    );
+    const person = this.data.people.find(p => p.id === personId);
+    if (!person) return [];
+    
+    return this.data.movies.filter(m => {
+      // Check cast (both object and string formats)
+      const isInCast = m.cast.some((castMember: any) => {
+        if (typeof castMember === 'string') {
+          return castMember.toLowerCase().includes(person.name.toLowerCase());
+        }
+        return castMember.id === personId || castMember.name.toLowerCase().includes(person.name.toLowerCase());
+      });
+      
+      // Check director, writer, producer arrays
+      const isDirector = m.director.some((dir: string) => dir.toLowerCase().includes(person.name.toLowerCase()));
+      const isWriter = m.writer.some((writer: string) => writer.toLowerCase().includes(person.name.toLowerCase()));
+      const isProducer = m.producer.some((prod: string) => prod.toLowerCase().includes(person.name.toLowerCase()));
+      
+      return isInCast || isDirector || isWriter || isProducer;
+    });
   }
   async createPerson(person: InsertPerson): Promise<Person> {
     const newPerson: Person = {
