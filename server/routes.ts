@@ -182,29 +182,121 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Series endpoints  
-  app.get("/api/series", async (req, res) => {
+  // Mix/Variety content endpoints
+  app.get("/api/mix", async (req, res) => {
     try {
-      const series = await storage.getMoviesByCategory("series");
-      // Add some sample series data for now
-      const sampleSeries = [
+      const filters = {
+        category: 'mix',
+        sortBy: "newest",
+        sortOrder: "desc", 
+        limit: parseInt((req.query.limit as string) || "20"),
+        offset: parseInt((req.query.offset as string) || "0")
+      };
+
+      const result = await storage.searchMoviesAdvanced(filters);
+      
+      // Add sample mix data for now
+      const sampleMix = [
         {
-          id: "series-1",
-          title: "مسلسل Game of Thrones",
-          originalTitle: "Game of Thrones",
-          description: "مسلسل خيالي ملحمي",
-          year: 2011,
-          poster: "https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
-          category: "series",
-          rating: 9.3,
-          seasons: 8,
-          episodes: 73
+          id: "mix-1",
+          title: "تغريدات الإعداد", 
+          poster: "https://img.downet.net/thumb/270x400/uploads/mix1.jpg",
+          year: 2024,
+          rating: 7.5,
+          type: "video",
+          duration: "15:30",
+          category: "mix",
+          genre: ["توك شو"],
+          quality: "HD"
+        },
+        {
+          id: "mix-2",
+          title: "أغنية من شارع بجاي الياس",
+          poster: "https://img.downet.net/thumb/270x400/uploads/mix2.jpg", 
+          year: 2023,
+          rating: 8.0,
+          type: "audio",
+          duration: "04:25",
+          category: "mix",
+          genre: ["موسيقى"],
+          quality: "HD"
         }
       ];
-      res.json([...series, ...sampleSeries]);
+      
+      res.json([...result.movies, ...sampleMix]);
     } catch (error) {
-      console.error("Get series error:", error);
-      res.status(500).json({ message: "خطأ في استرجاع المسلسلات" });
+      console.error("Get mix error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع المنوعات" });
+    }
+  });
+
+  // Recent content endpoint
+  app.get("/api/recent", async (req, res) => {
+    try {
+      const filters = {
+        recent: true,
+        sortBy: "newest",
+        sortOrder: "desc",
+        limit: parseInt((req.query.limit as string) || "20"),
+        offset: parseInt((req.query.offset as string) || "0")
+      };
+
+      const result = await storage.searchMoviesAdvanced(filters);
+      res.json(result);
+    } catch (error) {
+      console.error("Get recent error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع المحتوى الحديث" });
+    }
+  });
+
+  // Ones/Special content endpoint
+  app.get("/api/ones", async (req, res) => {
+    try {
+      const filters = {
+        featured: true,
+        sortBy: "rating",
+        sortOrder: "desc",
+        limit: parseInt((req.query.limit as string) || "20"),
+        offset: parseInt((req.query.offset as string) || "0")
+      };
+
+      const result = await storage.searchMoviesAdvanced(filters);
+      
+      // Add sample ones data
+      const sampleOnes = [
+        {
+          id: "ones-1",
+          title: "فيلم المليون",
+          poster: "https://img.downet.net/thumb/270x400/uploads/ones1.jpg",
+          year: 2024,
+          rating: 9.2,
+          type: "movie",
+          category: "movie",
+          genre: ["دراما", "رومانسي"],
+          quality: "4K",
+          duration: "2:15:00",
+          description: "قصة استثنائية عن الحب والتضحية",
+          featured: true
+        },
+        {
+          id: "ones-2", 
+          title: "مسلسل الواحد",
+          poster: "https://img.downet.net/thumb/270x400/uploads/ones2.jpg",
+          year: 2024,
+          rating: 9.5,
+          type: "series",
+          category: "series",
+          genre: ["دراما", "تشويق"],
+          quality: "HD", 
+          description: "مسلسل درامي مليء بالإثارة والتشويق",
+          featured: true
+        }
+      ];
+      
+      res.json([...result.movies, ...sampleOnes]);
+    } catch (error) {
+      console.error("Get ones error:", error);
+      res.status(500).json({ message: "خطأ في استرجاع المحتوى المميز" });
     }
   });
 

@@ -24,10 +24,13 @@ export default function Series() {
   });
 
   // جلب المسلسلات من API بدلاً من البيانات الثابتة
-  const { data: seriesData = [], isLoading, error } = useQuery({
+  const { data: seriesResponse, isLoading, error } = useQuery({
     queryKey: ['/api/series'],
-    select: (data: any) => data || []
+    queryFn: () => fetch('/api/series').then(res => res.json())
   });
+
+  // استخراج المسلسلات من الاستجابة
+  const seriesData = seriesResponse?.movies || seriesResponse || [];
 
   useEffect(() => {
     document.body.className = 'header-fixed';
