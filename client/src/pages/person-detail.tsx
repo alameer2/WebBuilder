@@ -34,13 +34,15 @@ interface Movie {
 export default function PersonDetail() {
   const { id } = useParams();
 
-  const { data: personData, isLoading, error } = useQuery({
+  const { data: person, isLoading, error } = useQuery({
     queryKey: ['/api/people', id],
     enabled: !!id
-  });
+  }) as { data: Person | undefined, isLoading: boolean, error: any };
 
-  const person = personData as Person;
-  const personMovies = (personData as any)?.movies || [];
+  const { data: personMovies = [] } = useQuery({
+    queryKey: ['/api/people', id, 'movies'],
+    enabled: !!id && !!person
+  }) as { data: Movie[] };
 
   useEffect(() => {
     document.body.className = 'header-fixed body-main';
