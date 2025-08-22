@@ -153,7 +153,7 @@ export default function Series() {
                 <div className="post-item">
                   <div className="post-poster">
                     <Link href={`/series/${series.id}`}>
-                      <a className="d-block">
+                      <div className="d-block">
                         <img
                           src={series.poster}
                           className="img-fluid"
@@ -166,13 +166,13 @@ export default function Series() {
                             {series.rating}
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </Link>
                   </div>
                   <div className="post-content">
                     <h3 className="post-title">
                       <Link href={`/series/${series.id}`}>
-                        <a className="text-white">{series.title}</a>
+                        <span className="text-white">{series.title}</span>
                       </Link>
                     </h3>
                     <div className="post-meta text-muted">

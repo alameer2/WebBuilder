@@ -53,51 +53,62 @@ interface SeriesDetail {
 export default function SeriesDetail() {
   const { id } = useParams();
   
-  const { data: series, isLoading } = useQuery<SeriesDetail>({
+  const { data: series, isLoading, error } = useQuery<SeriesDetail>({
     queryKey: ['/api/series', id],
-    // بيانات تجريبية - ستستبدل بـ API حقيقي
-    queryFn: () => Promise.resolve({
-      id: "220-days",
-      title: "220 يوم",
-      titleEn: "220 Days",
-      description: "مسلسل 220 يوم يحكي قصة مشوقة ومثيرة تجري أحداثها خلال 220 يوماً حافلاً بالأحداث المتلاحقة والمفاجآت التي تبقي المشاهد في حالة ترقب مستمر. يمزج المسلسل بين عناصر الإثارة والرومانسية والدراما بطريقة مميزة تجعله من أبرز الأعمال الدرامية.",
-      poster: defaultAvatar,
-      backdrop: "/client/src/assets/images/home-bg.webp",
-      year: 2025,
-      genre: ["اثارة", "رومانسي", "دراما"],
-      rating: 8.0,
-      tmdbRating: 8.0,
-      imdbRating: 7.8,
-      quality: "WEB-DL - 720p",
-      language: "العربية",
-      subtitle: "العربية",
-      country: "مصر",
-      duration: "36 دقيقة",
-      addedDate: "الخميس 31 07 2025 - 01:43 صباحا",
-      updatedDate: "الخميس 31 07 2025 - 01:46 صباحا",
-      tmdbUrl: "https://www.themoviedb.org/tv/271270-220",
-      imdbUrl: "https://www.imdb.com/title/tt34934811",
-      trailerUrl: "https://www.youtube.com/watch?v=Q6z0EKgBvmw",
-      episodesCount: 24,
-      cast: [
-        { id: "1", name: "ممثل رئيسي 1", image: defaultAvatar },
-        { id: "2", name: "ممثل رئيسي 2", image: defaultAvatar },
-        { id: "3", name: "ممثل رئيسي 3", image: defaultAvatar }
-      ],
-      gallery: [
-        defaultAvatar,
-        defaultAvatar,
-        defaultAvatar,
-        defaultAvatar
-      ],
-      episodes: Array.from({ length: 24 }, (_, i) => ({
-        id: `ep-${i + 1}`,
-        title: `الحلقة ${i + 1}`,
-        episodeNumber: i + 1,
-        description: `وصف الحلقة ${i + 1}`,
-        duration: "36 دقيقة"
-      }))
-    })
+    queryFn: async () => {
+      try {
+        const response = await fetch(`/api/series/${id}`);
+        if (response.ok) {
+          return await response.json();
+        }
+      } catch (error) {
+        console.error('Error fetching series:', error);
+      }
+      
+      // Return fallback data if API fails
+      return {
+        id: "220-days",
+        title: "220 يوم",
+        titleEn: "220 Days", 
+        description: "مسلسل 220 يوم يحكي قصة مشوقة ومثيرة تجري أحداثها خلال 220 يوماً حافلاً بالأحداث المتلاحقة والمفاجآت التي تبقي المشاهد في حالة ترقب مستمر. يمزج المسلسل بين عناصر الإثارة والرومانسية والدراما بطريقة مميزة تجعله من أبرز الأعمال الدرامية.",
+        poster: defaultAvatar,
+        backdrop: "/client/src/assets/images/home-bg.webp",
+        year: 2025,
+        genre: ["اثارة", "رومانسي", "دراما"],
+        rating: 8.0,
+        tmdbRating: 8.0,
+        imdbRating: 7.8,
+        quality: "WEB-DL - 720p",
+        language: "العربية",
+        subtitle: "العربية",
+        country: "مصر",
+        duration: "36 دقيقة",
+        addedDate: "الخميس 31 07 2025 - 01:43 صباحا",
+        updatedDate: "الخميس 31 07 2025 - 01:46 صباحا",
+        tmdbUrl: "https://www.themoviedb.org/tv/271270-220",
+        imdbUrl: "https://www.imdb.com/title/tt34934811",
+        trailerUrl: "https://www.youtube.com/watch?v=Q6z0EKgBvmw",
+        episodesCount: 24,
+        cast: [
+          { id: "1", name: "ممثل رئيسي 1", image: defaultAvatar },
+          { id: "2", name: "ممثل رئيسي 2", image: defaultAvatar },
+          { id: "3", name: "ممثل رئيسي 3", image: defaultAvatar }
+        ],
+        gallery: [
+          defaultAvatar,
+          defaultAvatar,
+          defaultAvatar,
+          defaultAvatar
+        ],
+        episodes: Array.from({ length: 24 }, (_, i) => ({
+          id: `ep-${i + 1}`,
+          title: `الحلقة ${i + 1}`,
+          episodeNumber: i + 1,
+          description: `وصف الحلقة ${i + 1}`,
+          duration: "36 دقيقة"
+        }))
+      };
+    }
   });
 
   useEffect(() => {
