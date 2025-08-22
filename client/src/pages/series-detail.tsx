@@ -442,8 +442,8 @@ export default function SeriesDetail() {
                 <img src={icnWHeader} alt="icn-w" className="header-img" />
               </header>
               <div className="widget-body row">
-                {series.cast.map((actor) => (
-                  <div key={actor.id} className="col-lg-auto col-md-4 col-6 mb-12">
+                {series.cast.map((actor, index) => (
+                  <div key={actor.id || index} className="col-lg-auto col-md-4 col-6 mb-12">
                     <div className="entry-box entry-box-3 h-100">
                       <a href={`/person/${actor.id}`} className="box d-flex no-gutters align-items-center">
                         <div className="col-auto">

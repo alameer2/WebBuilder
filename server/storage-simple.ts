@@ -43,7 +43,10 @@ export class SimpleMemoryStorage implements IStorage {
       section: "مترجم",
       country: "USA",
       director: ["Christopher Nolan"],
-      cast: ["Christian Bale", "Heath Ledger"],
+      cast: [
+        { id: "christian", name: "Christian Bale", image: "https://image.tmdb.org/t/p/w200/3qx2QFUbG6t6IlzR0F9k3Z4Y8dD.jpg" },
+        { id: "heath", name: "Heath Ledger", image: "https://image.tmdb.org/t/p/w200/5Y9HnYYa9jF4NunY9lSgJGjSe8E.jpg" }
+      ],
       writer: ["Christopher Nolan"],
       producer: ["Emma Thomas"],
       isNew: false,
@@ -80,7 +83,10 @@ export class SimpleMemoryStorage implements IStorage {
       section: "مترجم",
       country: "USA",
       director: ["Vince Gilligan"],
-      cast: ["Bryan Cranston", "Aaron Paul"],
+      cast: [
+        { id: "bryan", name: "Bryan Cranston", image: "https://image.tmdb.org/t/p/w200/7ksQ9AKWX9xOFKmHZCadcAZbGQa.jpg" },
+        { id: "aaron", name: "Aaron Paul", image: "https://image.tmdb.org/t/p/w200/hWQBGDDYO4bY1Qd75IjGfG29CaE.jpg" }
+      ],
       writer: ["Vince Gilligan"],
       producer: ["Mark Johnson"],
       isNew: false,
@@ -117,7 +123,11 @@ export class SimpleMemoryStorage implements IStorage {
       section: "مترجم",
       country: "USA",
       director: ["David Benioff", "D.B. Weiss"],
-      cast: ["Emilia Clarke", "Kit Harington", "Peter Dinklage"],
+      cast: [
+        { id: "emilia", name: "Emilia Clarke", image: "https://image.tmdb.org/t/p/w200/3z7p8ks7P4e9iDq1iNglRvr5s5Y.jpg" },
+        { id: "kit", name: "Kit Harington", image: "https://image.tmdb.org/t/p/w200/4IjFNMtbNBTSLGktbJjzZjeZnxz.jpg" },
+        { id: "peter", name: "Peter Dinklage", image: "https://image.tmdb.org/t/p/w200/lYrdCq6Uqm8O8QSq5NVBDqsOxhI.jpg" }
+      ],
       writer: ["George R.R. Martin"],
       producer: ["HBO"],
       isNew: false,
@@ -153,7 +163,11 @@ export class SimpleMemoryStorage implements IStorage {
       section: "مترجم",
       country: "USA",
       director: ["David Crane", "Marta Kauffman"],
-      cast: ["Jennifer Aniston", "Courteney Cox", "Lisa Kudrow"],
+      cast: [
+        { id: "jennifer", name: "Jennifer Aniston", image: "https://image.tmdb.org/t/p/w200/bTJjhI3lKJGn1BdWfMEWd9F8E8P.jpg" },
+        { id: "courteney", name: "Courteney Cox", image: "https://image.tmdb.org/t/p/w200/hwYfnxWEfRXiHZuKlxeXL2pNbgc.jpg" },
+        { id: "lisa", name: "Lisa Kudrow", image: "https://image.tmdb.org/t/p/w200/bY6fBKrQ2LKgLvMSO4m0j7HssME.jpg" }
+      ],
       writer: ["David Crane", "Marta Kauffman"],
       producer: ["NBC"],
       isNew: false,
@@ -189,7 +203,11 @@ export class SimpleMemoryStorage implements IStorage {
       section: "مترجم",
       country: "USA",
       director: ["Greg Daniels"],
-      cast: ["Steve Carell", "John Krasinski", "Jenna Fischer"],
+      cast: [
+        { id: "steve", name: "Steve Carell", image: "https://image.tmdb.org/t/p/w200/dzJtsLspH5Bf8Tvw7OQC47ETNfJ.jpg" },
+        { id: "john", name: "John Krasinski", image: "https://image.tmdb.org/t/p/w200/3z0xBgfKzg3tHe6L9v5FhJh2M4p.jpg" },
+        { id: "jenna", name: "Jenna Fischer", image: "https://image.tmdb.org/t/p/w200/dhKgbg7K9ooEIlN9jkHowUQFnMY.jpg" }
+      ],
       writer: ["Greg Daniels"],
       producer: ["NBC"],
       isNew: false,
@@ -201,6 +219,53 @@ export class SimpleMemoryStorage implements IStorage {
       dislikeCount: 8,
       addedDate: new Date(),
       updatedDate: new Date(),
+    });
+
+    // Add sample episodes for Game of Thrones
+    this.data.episodes.push({
+      id: "got-s1-e1",
+      seriesId: "series-1",
+      episodeNumber: 1,
+      seasonNumber: 1,
+      title: "Winter Is Coming",
+      description: "النبيل إيدارد ستارك يواجه معضلة صعبة عندما يطلب منه الملك روبرت أن يصبح يده اليمنى",
+      duration: 62,
+      poster: null,
+      videoUrl: null,
+      downloadLinks: [],
+      watchCount: 0,
+      addedDate: new Date(),
+    });
+
+    this.data.episodes.push({
+      id: "got-s1-e2",
+      seriesId: "series-1",
+      episodeNumber: 2,
+      seasonNumber: 1,
+      title: "The Kingsroad",
+      description: "يغادر إيدارد وبناته إلى كينغز لاندينغ بينما جون سنو ينطلق نحو الحائط",
+      duration: 56,
+      poster: null,
+      videoUrl: null,
+      downloadLinks: [],
+      watchCount: 0,
+      addedDate: new Date(),
+    });
+
+    // Add sample episodes for Friends
+    this.data.episodes.push({
+      id: "friends-s1-e1",
+      seriesId: "series-2",
+      episodeNumber: 1,
+      seasonNumber: 1,
+      title: "The One Where Monica Gets a Roommate",
+      description: "راشيل تترك خطيبها في المذبح وتنضم لمجموعة الأصدقاء في مقهى سنترال بيرك",
+      duration: 22,
+      poster: null,
+      videoUrl: null,
+      downloadLinks: [],
+      watchCount: 0,
+      addedDate: new Date(),
     });
 
     // Add sample show
@@ -538,5 +603,25 @@ export class SimpleMemoryStorage implements IStorage {
     if (notification) {
       notification.isRead = true;
     }
+  }
+
+  // Episode methods
+  async getEpisodesBySeriesId(seriesId: string): Promise<Episode[]> {
+    return this.data.episodes.filter(e => e.seriesId === seriesId);
+  }
+
+  async getEpisodeById(id: string): Promise<Episode | undefined> {
+    return this.data.episodes.find(e => e.id === id);
+  }
+
+  async createEpisode(episode: InsertEpisode): Promise<Episode> {
+    const newEpisode: Episode = {
+      id: this.generateId(),
+      ...episode,
+      watchCount: 0,
+      addedDate: new Date(),
+    };
+    this.data.episodes.push(newEpisode);
+    return newEpisode;
   }
 }

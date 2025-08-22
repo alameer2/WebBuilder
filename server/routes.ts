@@ -326,7 +326,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Update view count
       await storage.updateMovieViews(req.params.id);
-      res.json(series);
+      
+      // Add episodes data for series
+      const episodes = await storage.getEpisodesBySeriesId(req.params.id);
+      
+      // Transform cast to match frontend expectations if needed
+      const transformedSeries = {
+        ...series,
+        episodes: episodes.length > 0 ? episodes : [
+          {
+            id: `${series.id}-ep-1`,
+            title: "الحلقة الأولى",
+            episodeNumber: 1,
+            description: "الحلقة الأولى من المسلسل",
+            duration: "45 دقيقة"
+          }
+        ]
+      };
+      
+      res.json(transformedSeries);
     } catch (error) {
       console.error("Get series error:", error);
       res.status(500).json({ message: "خطأ في استرجاع المسلسل" });
