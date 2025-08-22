@@ -208,7 +208,7 @@ export default function MovieDetail() {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href="/">يمن فليكس</Link>
+                <Link href="/ones">يمن فليكس</Link>
               </li>
               <li className="breadcrumb-item">
                 <Link href={`/${movie.category === 'movie' ? 'movies' : movie.category === 'series' ? 'series' : 'shows'}`}>

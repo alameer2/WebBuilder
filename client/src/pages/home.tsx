@@ -238,7 +238,7 @@ export default function Home() {
               <div className="row align-items-center">
                 <div className="col-auto">
                   <h2 className="main-logo m-0">
-                    <Link href="/" className="d-inline-flex">
+                    <Link href="/ones" className="d-inline-flex">
                       <img src={logoWhite} className="img-fluid" alt="يمن فليكس" />
                     </Link>
                   </h2>
@@ -284,7 +284,7 @@ export default function Home() {
             {/* Central Logo Button */}
             <div className="home-site-btn-container mt-5">
               <h1>
-                <Link href="/" className="link" style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', zIndex: 10 }}></Link>
+                <Link href="/ones" className="link" style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', zIndex: 10 }}></Link>
               </h1>
               <div 
                 className="home-site-btn" 

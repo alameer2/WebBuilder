@@ -94,7 +94,7 @@ export default function Profile() {
             </div>
           </div>
           <nav className="social d-flex justify-content-center">
-            <a href="/" className="home mx-2"><i className="icon-home"></i></a>
+            <a href="/ones" className="home mx-2"><i className="icon-home"></i></a>
             <a href="#" className="facebook mx-2"><i className="icon-facebook"></i></a>
             <a href="#" className="youtube mx-2"><i className="icon-youtube"></i></a>
             <a href="#" className="app-store mx-2"><i className="icon-app-store"></i></a>
@@ -123,7 +123,7 @@ export default function Profile() {
             <div className="row align-items-center py-3">
               <div className="col-lg-2 col-md-3 col-6">
                 <div className="logo">
-                  <a href="/">
+                  <a href="/ones">
                     <img src={logoWhite} alt="يمن فليكس" className="img-fluid" />
                   </a>
                 </div>

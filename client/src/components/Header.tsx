@@ -72,7 +72,7 @@ export default function Header({ className = "" }: HeaderProps) {
             <div className="row align-items-center">
               <div className="col-auto">
                 <h2 className="main-logo m-0">
-                  <Link href="/" className="d-inline-flex">
+                  <Link href="/ones" className="d-inline-flex">
                     <img src={logoWhite} className="img-fluid" alt="يمن فليكس" />
                   </Link>
                 </h2>

@@ -95,7 +95,7 @@ export default function PersonDetail() {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href="/">يمن فليكس</Link>
+                <Link href="/ones">يمن فليكس</Link>
               </li>
               <li className="breadcrumb-item">
                 <Link href="/people">أشخاص</Link>

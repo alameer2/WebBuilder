@@ -29,7 +29,7 @@ export default function MainMenu() {
           </div>
         </div>
         <nav className="social d-flex justify-content-center">
-          <Link href="/" className="home mx-2" onClick={closeMenu}>
+          <Link href="/ones" className="home mx-2" onClick={closeMenu}>
             <i className="icon-home"></i>
           </Link>
           <a href="https://facebook.com/yemenflix" target="_blank" className="facebook mx-2">

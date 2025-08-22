@@ -67,7 +67,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           })}
           
           <div className="mt-8 border-t border-gray-600 pt-4">
-            <Link href="/">
+            <Link href="/ones">
               <div className="flex items-center px-4 py-3 text-sm text-gray-300 hover:bg-[#161619] transition-colors">
                 <Home size={20} className="ml-3" />
                 العودة للموقع
