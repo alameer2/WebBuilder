@@ -1,16 +1,16 @@
 import { DatabaseStorage } from "./storage-db";
-import { SimpleMemoryStorage } from "./storage-simple";
+import { SimpleStorage } from "./storage-simple";
 import { API_KEYS } from "../config/api-keys";
 
 // Create storage instance based on environment
-let storageInstance: DatabaseStorage | SimpleMemoryStorage;
+let storageInstance: DatabaseStorage | SimpleStorage;
 
 if (API_KEYS.DATABASE_URL) {
   console.log("Using PostgreSQL database storage");
   storageInstance = new DatabaseStorage();
 } else {
   console.log("DATABASE_URL not found, using in-memory storage");
-  storageInstance = new SimpleMemoryStorage();
+  storageInstance = new SimpleStorage();
 }
 
 export const storage = storageInstance;

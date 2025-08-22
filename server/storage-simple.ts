@@ -5,7 +5,7 @@ import type {
   InsertComment, InsertFavorite, InsertContact, InsertNotification,
 } from "@shared/schema";
 
-export class SimpleMemoryStorage implements IStorage {
+export class SimpleStorage implements IStorage {
   private data = {
     users: [] as User[],
     movies: [] as Movie[],
